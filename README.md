@@ -1,5 +1,5 @@
 # module-federation-example
-An example of how Module Federation works
+An example of how Module Federation works with React and whatnot
 
 To run... easiest with two terminal windows
 
