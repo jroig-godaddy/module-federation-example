@@ -3,11 +3,11 @@ An example of how Module Federation works
 
 To run... easiest with two terminal windows
 
-Host:
-`cd host-server; npm i; npm run start ` 
+* Host:
+  * `cd host-server; npm i; npm run start ` 
 
-Component:
-`cd remote-component; npm i; npm run serve`
+* Component:
+  * `cd remote-component; npm i; npm run serve`
 
 
 App: http://localhost:3000/
