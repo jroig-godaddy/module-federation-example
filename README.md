@@ -1,4 +1,4 @@
-# module-federation-example
+# React Component Module Federation Example
 An example of how Module Federation works with React and whatnot
 
 To run... easiest with two terminal windows
