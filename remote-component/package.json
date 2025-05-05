@@ -3,25 +3,29 @@
     "version": "1.0.0",
     "scripts": {
         "build": "webpack --mode production",
-        "serve": "webpack serve --mode development --port 3001"
+        "serve": "webpack serve --mode development --port 3001",
+        "cds:build:dev:wmfe": "GITHASH=$(git log --pretty=format:'%h' -n 1); cds build --type=module_federation_wmfe --env=dev --gitHash=$GITHASH --engine=wmfe",
+        "cds:deploy:dev:wmfe": "GITHASH=$(git log --pretty=format:'%h' -n 1); cds deploy --type=module_federation_wmfe --env=dev --gitHash=$GITHASH --engine=wmfe",
+        "cds:golive:dev:wmfe": "GITHASH=$(git log --pretty=format:'%h' -n 1); cds golive --type=module_federation_wmfe --env=dev --gitHash=$GITHASH --engine=wmfe"
     },
     "dependencies": {
+        "@venture/cds-cli": "^0.0.41",
         "axios": "^1.9.0"
     },
     "peerDependencies": {
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
-      },
+    },
     "devDependencies": {
         "@babel/core": "^7.23.9",
         "@babel/preset-react": "^7.23.3",
         "@module-federation/enhanced": "^0.13.0",
         "babel-loader": "^9.1.3",
         "html-webpack-plugin": "^5.6.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "webpack": "^5.90.1",
         "webpack-cli": "^5.1.4",
-        "webpack-dev-server": "^4.15.1",
-                "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "webpack-dev-server": "^4.15.1"
     }
 }
