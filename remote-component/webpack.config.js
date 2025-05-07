@@ -84,11 +84,11 @@ module.exports = {
           eager: false,
           import: false
         },
-        'axios': {
+        'superagent': {
           singleton: true,
           requiredVersion: '*',
           strictVersion: false,
-          eager: false
+          eager: true
         }
       },
     }),

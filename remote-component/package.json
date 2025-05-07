@@ -10,7 +10,8 @@
     },
     "dependencies": {
         "@venture/cds-cli": "^0.0.41",
-        "axios": "^1.9.0"
+        "axios": "^1.9.0",
+        "superagent": "^10.2.1"
     },
     "peerDependencies": {
         "react": "^18.2.0",

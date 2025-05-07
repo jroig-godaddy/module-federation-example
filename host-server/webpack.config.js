@@ -36,14 +36,6 @@ module.exports = {
         historyApiFallback: true,
     },
     plugins: [
-        new ModuleFederationPlugin({
-            name: 'consuming_app',
-            shared: {
-              react: { singleton: true, requiredVersion: '*', eager: true, strictVersion: false },
-              'react-dom': { singleton: true, requiredVersion: '*',  eager: true, strictVersion: false },
-              'axios': { singleton: true, requiredVersion: '*',  eager: true, strictVersion: false }
-            },
-          }),
         new HtmlWebpackPlugin({
             template: './public/index.html',
         }),

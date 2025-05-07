@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import superagent from 'superagent'; // Import superagent for making HTTP requests
 
 const MyComponent = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -6,11 +7,14 @@ const MyComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       // Dynamically import axios
-      const { default: axios } = await import('axios');
       try {
-        const weatherReport = await axios.get('https://api.weather.gov/gridpoints/PSR/165,59/forecast');
-        console.log('weatherReport', weatherReport.data.properties.periods[0].detailedForecast);
-        setWeatherData(weatherReport.data.properties.periods[0].detailedForecast);
+        const weatherReport = await superagent.get('https://api.weather.gov/gridpoints/PSR/165,59/forecast')
+          .timeout({
+            response: 5000,  // Wait 5 seconds for the server to start sending,
+            deadline: 60000, // but allow 1 minute for the file to finish loading.
+          })
+        console.log('weatherReport', weatherReport);
+        setWeatherData(weatherReport.body.properties.periods[0].detailedForecast);
       } catch (error) {
         console.error('Error fetching weather data:', error);
       }
