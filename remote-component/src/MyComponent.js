@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import superagent from 'superagent'; // Import superagent for making HTTP requests
 
+
 const MyComponent = () => {
   const [weatherData, setWeatherData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
+
       // Dynamically import axios
       try {
         const weatherReport = await superagent.get('https://api.weather.gov/gridpoints/PSR/165,59/forecast')
