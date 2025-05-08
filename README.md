@@ -11,7 +11,7 @@ The nice thing about [Module Federation](https://module-federation.io/) is that 
 To run... easiest with two terminal windows
 
 * Host
-  * `cd host-server; npm i; npm run start`
+  * `cd host-server; npm i; npm run buildl npm run start`
 * Component
   * `cd remote-component; npm i; npm run serve`
     
