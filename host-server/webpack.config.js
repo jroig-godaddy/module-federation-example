@@ -41,7 +41,7 @@ module.exports = {
             shared: {
               react: { singleton: true, requiredVersion: '*', eager: true, strictVersion: false },
               'react-dom': { singleton: true, requiredVersion: '*',  eager: true, strictVersion: false },
-              'axios': { singleton: true, requiredVersion: '*',  eager: true, strictVersion: false }
+              'superagent': { singleton: true, requiredVersion: '*',  eager: true, strictVersion: false }
             },
           }),
         new HtmlWebpackPlugin({

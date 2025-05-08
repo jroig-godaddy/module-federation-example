@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import './styles/App.css';
-import axios from 'axios'; 
+import superagent from 'superagent'; 
 
 import { init, loadRemote } from '@module-federation/enhanced/runtime';
 
@@ -24,8 +24,8 @@ const App = () => {
 
     const fetchData = async () => {
         try {
-          const response = await axios.get('https://api.weather.gov/points/33.4949,-111.9217');
-          console.log('server', response.data);
+          const response = await superagent.get('https://api.weather.gov/points/33.4949,-111.9217');
+          console.log('server', response.body);
         } catch (error) {
           console.error('Error fetching data:', error);
         }
