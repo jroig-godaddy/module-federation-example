@@ -88,7 +88,7 @@ module.exports = {
           singleton: true,
           requiredVersion: '*',
           strictVersion: false,
-          eager: false
+          eager: true
         }
       },
     }),

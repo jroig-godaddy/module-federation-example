@@ -12,6 +12,23 @@ init({
       entry: 'http://localhost:3001/mf-manifest.json'
     },
   ],
+  shared: {
+    react: {
+      singleton: true,
+      eager: true,
+      requiredVersion: '18.2.0',
+    },
+    'react-dom': {
+      singleton: true,
+      eager: true,
+      requiredVersion: '18.2.0',
+    },
+    'superagent': {
+      singleton: true,
+      eager: true,
+      requiredVersion: '*',
+    }
+  },
 });
 
 const RemoteMyComponent = React.lazy(() =>
@@ -24,6 +41,7 @@ const App = () => {
 
     const fetchData = async () => {
         try {
+
           const response = await superagent.get('https://api.weather.gov/points/33.4949,-111.9217');
           console.log('server', response.body);
         } catch (error) {

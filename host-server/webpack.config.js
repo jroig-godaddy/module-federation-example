@@ -44,6 +44,7 @@ module.exports = {
               'superagent': { singleton: true, requiredVersion: '*',  eager: true, strictVersion: false }
             },
           }),
+
         new HtmlWebpackPlugin({
             template: './public/index.html',
         }),
