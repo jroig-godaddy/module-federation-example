@@ -14,29 +14,29 @@ module.exports = {
   //   react: 'React',
   //   'react-dom': 'ReactDOM'
   // },
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-      minSize: 0,
-      maxInitialRequests: Infinity,
-      cacheGroups: {
-        default: false,
-        vendors: false,
-        dependencies: {
-          test: /[\\/]node_modules[\\/]/,
-          name(module) {
-            const match = module.context && module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
-            if (match) {
-              const packageName = match[1]; // Extract the package name
-              return `dependency.${packageName.replace('@', '')}`;
-            }
-            return null;
-          },
-          chunks: 'all'
-        }
-      }
-    }
-  },
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: 'all',
+  //     minSize: 0,
+  //     maxInitialRequests: Infinity,
+  //     cacheGroups: {
+  //       default: false,
+  //       vendors: false,
+  //       dependencies: {
+  //         test: /[\\/]node_modules[\\/]/,
+  //         name(module) {
+  //           const match = module.context && module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
+  //           if (match) {
+  //             const packageName = match[1]; // Extract the package name
+  //             return `dependency.${packageName.replace('@', '')}`;
+  //           }
+  //           return null;
+  //         },
+  //         chunks: 'all'
+  //       }
+  //     }
+  //   }
+  // },
   
   mode: 'production',
   devServer: {
@@ -88,7 +88,8 @@ module.exports = {
           singleton: true,
           requiredVersion: '*',
           strictVersion: false,
-          eager: true
+          eager: false,
+          import: 'superagent'
         }
       },
     }),

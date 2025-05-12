@@ -24,6 +24,7 @@ init({
       requiredVersion: '18.2.0',
     },
     'superagent': {
+      lib: () => superagent,
       singleton: true,
       eager: true,
       requiredVersion: '*',
@@ -41,8 +42,7 @@ const App = () => {
 
     const fetchData = async () => {
         try {
-
-          const response = await superagent.get('https://api.weather.gov/points/33.4949,-111.9217');
+          const response = await superagent('https://api.weather.gov/points/33.4949,-111.9217');
           console.log('server', response.body);
         } catch (error) {
           console.error('Error fetching data:', error);

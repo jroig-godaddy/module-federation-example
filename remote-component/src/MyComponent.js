@@ -7,8 +7,6 @@ const MyComponent = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-
-      // Dynamically import axios
       try {
         const weatherReport = await superagent.get('https://api.weather.gov/gridpoints/PSR/165,59/forecast')
           .timeout({
