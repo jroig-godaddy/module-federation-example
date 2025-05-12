@@ -2,6 +2,19 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('@module-federation/enhanced');
 
+const { dependencies } = require('./package.json')
+const deps = Object.keys(dependencies).reduce((acc, curr) => {
+    acc[curr] = {
+        singleton: true,
+        eager: true,
+        requiredVersion: '*',
+        strictVersion: false,
+    };
+    return acc;
+}, {});
+
+
+// delete(deps['superagent']);
 
 module.exports = {
     mode: 'development',
@@ -38,11 +51,7 @@ module.exports = {
     plugins: [
         new ModuleFederationPlugin({
             name: 'consuming_app',
-            shared: {
-              react: { singleton: true, requiredVersion: '*', eager: true, strictVersion: false },
-              'react-dom': { singleton: true, requiredVersion: '*',  eager: true, strictVersion: false },
-              superagent: { singleton: true, requiredVersion: false,  eager: true, strictVersion: false },            
-            },
+            shared: deps
           }),
 
         new HtmlWebpackPlugin({

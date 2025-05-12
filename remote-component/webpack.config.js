@@ -2,6 +2,38 @@ const path = require('path');
 const { ModuleFederationPlugin } = require('@module-federation/enhanced');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const { dependencies } = require('./package.json');
+const sharedDeps = {
+  react: {
+    singleton: true,
+    requiredVersion: '*',
+    strictVersion: false,
+    eager: false,
+    import: false
+  },
+  'react-dom': {
+    singleton: true,
+    requiredVersion: '*',
+    strictVersion: false,
+    eager: false,
+    import: false
+  }
+};
+// iterate over dependencies and add them to sharedDeps
+Object.keys(dependencies).forEach(dep => {
+  if (dep === 'react' || dep === 'react-dom') {
+    return;
+  }
+  sharedDeps[dep] = {
+    singleton: true,
+    requiredVersion: '*',
+    strictVersion: false,
+    eager: false,
+    import: dep
+  };
+});
+
+
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -10,33 +42,7 @@ module.exports = {
     chunkFilename: '[id].[contenthash].js', // Ensure chunk filenames are unique
     publicPath: 'http://localhost:3001/'
   },
-  // externals: {
-  //   react: 'React',
-  //   'react-dom': 'ReactDOM'
-  // },
-  // optimization: {
-  //   splitChunks: {
-  //     chunks: 'all',
-  //     minSize: 0,
-  //     maxInitialRequests: Infinity,
-  //     cacheGroups: {
-  //       default: false,
-  //       vendors: false,
-  //       dependencies: {
-  //         test: /[\\/]node_modules[\\/]/,
-  //         name(module) {
-  //           const match = module.context && module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
-  //           if (match) {
-  //             const packageName = match[1]; // Extract the package name
-  //             return `dependency.${packageName.replace('@', '')}`;
-  //           }
-  //           return null;
-  //         },
-  //         chunks: 'all'
-  //       }
-  //     }
-  //   }
-  // },
+
   
   mode: 'production',
   devServer: {
@@ -69,29 +75,7 @@ module.exports = {
       exposes: {
         './MyComponent': './src/MyComponent',
       },
-      shared: {
-        react: {
-          singleton: true,
-          requiredVersion: '*',
-          strictVersion: false,
-          eager: false,
-          import: false
-        },
-        'react-dom': {
-          singleton: true,
-          requiredVersion: '*',
-          strictVersion: false,
-          eager: false,
-          import: false
-        },
-        'superagent': {
-          singleton: true,
-          requiredVersion: '*',
-          strictVersion: false,
-          eager: false,
-          import: 'superagent'
-        }
-      },
+      shared: sharedDeps
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
