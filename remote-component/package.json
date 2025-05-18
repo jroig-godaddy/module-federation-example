@@ -4,6 +4,7 @@
     "scripts": {
         "build": "webpack --mode production",
         "serve": "webpack serve --mode development --port 3001",
+        "cds:local:dev": "cds --engine=wmfe build --env=local --type=module_federation_wmfe && cds local",
         "cds:build:dev:wmfe": "GITHASH=$(git log --pretty=format:'%h' -n 1); cds build --type=module_federation_wmfe --env=dev --gitHash=$GITHASH --engine=wmfe",
         "cds:deploy:dev:wmfe": "GITHASH=$(git log --pretty=format:'%h' -n 1); cds deploy --type=module_federation_wmfe --env=dev --gitHash=$GITHASH --engine=wmfe",
         "cds:golive:dev:wmfe": "GITHASH=$(git log --pretty=format:'%h' -n 1); cds golive --type=module_federation_wmfe --env=dev --gitHash=$GITHASH --engine=wmfe"
