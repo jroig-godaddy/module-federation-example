@@ -1,7 +1,7 @@
 
 module.exports = {
   useLinaria: false,
-  input: './src/index.js',
+  input: './src/MyComponent.js',
   combineDeps: true,
   switchboard: 'module_federaton',
   webpack: {
